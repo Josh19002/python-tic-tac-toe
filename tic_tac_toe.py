@@ -1,7 +1,7 @@
 #Tic Tac Toe Game
 #By Joshua Herman
 #For CSE210 Assignment: "W02 Introduction: Ponder and Prove"
-#
+
 #main function
 def main():
     #Welcome message
@@ -153,8 +153,149 @@ def win_check(board, board_size):
         #Board 2 Checks
         elif board_size == "2":
             #Large Board Quadrent 1
+            #X Checks
+            #Rows
+            if board[0] == "\x1b[91mX\x1b[00m" and board[1] == "\x1b[91mX\x1b[00m" and board[2] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[4] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[8] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Columns
+            elif board[0] == "\x1b[91mX\x1b[00m" and board[4] == "\x1b[91mX\x1b[00m" and board[8] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[1] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[2] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Diagonals
+            elif board[0] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[8] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m" and board[2] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #O Checks
+            #Rows
+            elif board[0] == "\x1b[92mO\x1b[00m" and board[1] == "\x1b[92mO\x1b[00m" and board[2] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[4] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[8] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Columns
+            elif board[0] == "\x1b[92mO\x1b[00m" and board[4] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[1] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[2] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Diagonals
+            elif board[0] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[2] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m":
+                return "o"
+
+            
             #Large Board Quadrent 2
+            #X Checks
+            #Rows
+            elif board[1] == "\x1b[91mX\x1b[00m" and board[2] == "\x1b[91mX\x1b[00m" and board[3] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[5] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m" and board[7] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[9] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m" and board[11] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Columns
+            elif board[3] == "\x1b[91mX\x1b[00m" and board[7] == "\x1b[91mX\x1b[00m" and board[11] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Diagonals
+            elif board[1] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m" and board[11] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[3] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #O Checks
+            #Rows
+            elif board[1] == "\x1b[92mO\x1b[00m" and board[2] == "\x1b[92mO\x1b[00m" and board[3] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[5] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m" and board[7] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[9] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m" and board[11] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Columns
+            elif board[3] == "\x1b[92mO\x1b[00m" and board[7] == "\x1b[92mO\x1b[00m" and board[11] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Diagonals
+            elif board[1] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m" and board[11] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[3] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m":
+                return "o"
+
+            
             #Large Board Quadrent 3
+            #X Checks
+            #Rows
+            elif board[12] == "\x1b[91mX\x1b[00m" and board[13] == "\x1b[91mX\x1b[00m" and board[14] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Columns
+            elif board[4] == "\x1b[91mX\x1b[00m" and board[8] == "\x1b[91mX\x1b[00m" and board[12] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[5] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m" and board[13] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[6] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m" and board[14] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Diagonals
+            elif board[4] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m" and board[14] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[6] == "\x1b[91mX\x1b[00m" and board[9] == "\x1b[91mX\x1b[00m" and board[12] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #O Checks
+            #Rows
+            elif board[12] == "\x1b[92mO\x1b[00m" and board[13] == "\x1b[92mO\x1b[00m" and board[14] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Columns
+            elif board[4] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m" and board[12] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[5] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m" and board[13] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[6] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m" and board[14] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Diagonals
+            elif board[4] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m" and board[14] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[6] == "\x1b[92mO\x1b[00m" and board[9] == "\x1b[92mO\x1b[00m" and board[12] == "\x1b[92mO\x1b[00m":
+                return "o"
+
+            
             #Large Board Quadrent 4
+            #X Checks
+            #Rows
+            elif board[13] == "\x1b[91mX\x1b[00m" and board[14] == "\x1b[91mX\x1b[00m" and board[15] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Columns
+            elif board[7] == "\x1b[91mX\x1b[00m" and board[11] == "\x1b[91mX\x1b[00m" and board[15] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Diagonals
+            elif board[5] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m" and board[15] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[7] == "\x1b[91mX\x1b[00m" and board[10] == "\x1b[91mX\x1b[00m" and board[13] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #O Checks
+            #Rows
+            elif board[13] == "\x1b[92mO\x1b[00m" and board[14] == "\x1b[92mO\x1b[00m" and board[15] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Columns
+            elif board[7] == "\x1b[92mO\x1b[00m" and board[11] == "\x1b[92mO\x1b[00m" and board[15] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Diagonals
+            elif board[5] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m" and board[15] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[7] == "\x1b[92mO\x1b[00m" and board[10] == "\x1b[92mO\x1b[00m" and board[13] == "\x1b[92mO\x1b[00m":
+                return "o"
+
+            
+            #None
+            elif board[0] != "1" and board[1] != "2" and board[2] != "3" and board[3] != "4" and board[4] != "5" and board[5] != "6" and board[6] != "7" and board[7] != "8" and board[8] != "9" and board[9] != "10" and board[10] != "11" and board[11] != "12" and board[12] != "13" and board[13] != "14" and board[14] != "15" and board[15] != "16":
+                return "cat"
+            else:
+                return ""
 #Run Program
 main()
