@@ -15,33 +15,146 @@ def main():
             board_size_name = "3x3"
         elif board_size == "2":
             board_size_name = "4x4"
-        elif board_size =="3":
-            board_size_name = "5x5"
-        player_x = options[1]
-        player_y = options[2]
-        game_setup_confirm = input(f"Please confirm the following:\n\nBoard Size: {board_size_name}\nPlayer X's Name: {player_x}\nPlayer Y's Name: {player_y}\nPlease confirm by typing Y or N: ")
+        game_setup_confirm = input(f"\nPlease confirm the following:\n\nBoard Size: {board_size_name}\nPlayer X's Name: {options[1]}\nPlayer O's Name: {options[2]}\n\nPlease confirm by typing Y or N: ")
         if game_setup_confirm.lower() == "y" or game_setup_confirm.lower() == "yes":
             game_setup_conf = True
         else:
             print("\nRe-running Setup...")
-    print("end test")
+    run_game(options)
         
 #Game Setup Function
 def game_setup():
     board_selection_conf = False
     while board_selection_conf == False:
-        board_selection = input("\nBoard Sizes:\n\n1. 3x3 (Classic)\n2. 4x4 (Medium)\n3. 5x5 (Large)\n\nPlease select your board size by typing a number listed above (1-3): ")
-        if board_selection == "1" or board_selection == "2" or board_selection == "3":
+        board_selection = input("\nBoard Sizes:\n\n1. 3x3 (Classic)\n2. 4x4 (Medium)\n\nPlease select your board size by typing a number listed above (1-3): ")
+        if board_selection == "1" or board_selection == "2":
             board_selection_conf = True
         else:
             print("\nSorry that was not one of the options available above, please try again.")
     player_x = input("\nPlease enter the name for the first player (X), or press enter to use the default: ")
     if player_x == "":
         player_x = "X"
-    player_y = input("\nPlease enter the name for the second player (Y), or press enter to use the default: ")
-    if player_y == "":
-        player_y = "Y"
-    options = [board_selection, player_x, player_y]
+    player_o = input("\nPlease enter the name for the second player (O), or press enter to use the default: ")
+    if player_o == "":
+        player_o = "O"
+    options = [board_selection, player_x, player_o]
     return options
+
+#Game
+def run_game(options):
+    print("\n\n\n\n\n\n\n\nLets Play!\nGet 3 in a row to win!\n-----------------------------")
+    game_won = False
+    board_size = options[0]
+    player_turn = "X"
+    if board_size == "1":
+        board=["1","2","3","4","5","6","7","8","9"]
+    elif board_size == "2":
+        board=["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"]
+    while game_won == False:
+            display_board(board, board_size)
+            #Player Name For Current Player
+            if player_turn == "X":
+                current_player = options[1] + " (X)"
+            else:
+                current_player = options[2] + " (O)"
+            #Player Turn
+            move = input(f"\n{current_player} it is your turn.\nSelect the space you want to occupy by typing it's number: ")
+            if check_move(move, board):
+                move = int(move)
+                move = move-1
+                if player_turn == "X":
+                    board[move] = f"\033[91m{player_turn}\033[00m"
+                else:  
+                    board[move] = f"\033[92m{player_turn}\033[00m"
+                #End of turn player swap
+                if player_turn == "X":
+                    player_turn = "O"
+                else:
+                    player_turn = "X"
+                winner = win_check(board, board_size)
+                if winner == "x":
+                    print("\nGAME OVER")
+                    display_board(board, board_size)
+                    print(f"\n{options[1]} is the winner! If you want to play again re-run the program.\n")
+                    exit()
+                elif winner == "o":
+                    print("\nGAME OVER")
+                    display_board(board, board_size)
+                    print(f"\n{options[2]} is the winner! If you want to play again re-run the program.\n")
+                    exit()
+                elif winner == "cat":
+                    print("\nGAME OVER")
+                    display_board(board, board_size)
+                    print("\nIt's a draw! If you want to play again re-run the program.\n")
+                    exit()
+            else:
+                print("\nThat move was not valid, please try again.")
+#Display Board
+def display_board(board, board_size):
+    if board_size == "1":
+        print(f"\n{board[0]}|{board[1]}|{board[2]}\n-+-+-\n{board[3]}|{board[4]}|{board[5]}\n-+-+-\n{board[6]}|{board[7]}|{board[8]}")
+    elif board_size == "2":
+        print(f"\n {board[0]}| {board[1]}| {board[2]}| {board[3]}\n--+--+--+--\n {board[4]}| {board[5]}| {board[6]}| {board[7]}\n--+--+--+--\n {board[8]}|{board[9]}|{board[10]}|{board[11]}\n--+--+--+--\n{board[12]}|{board[13]}|{board[14]}|{board[15]}")
+#Move Checks
+def check_move(move, board):
+    if move in board:
+        return True
+    else:
+        return False
+#Game End Check
+def win_check(board, board_size):
+        #Board 1 Checks
+        if board_size == "1":
+            #X Checks
+            #Rows
+            if board[0] == "\x1b[91mX\x1b[00m" and board[1] == "\x1b[91mX\x1b[00m" and board[2] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[3] == "\x1b[91mX\x1b[00m" and board[4] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[6] == "\x1b[91mX\x1b[00m" and board[7] == "\x1b[91mX\x1b[00m" and board[8] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Columns
+            elif board[0] == "\x1b[91mX\x1b[00m" and board[3] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[1] == "\x1b[91mX\x1b[00m" and board[4] == "\x1b[91mX\x1b[00m" and board[7] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[2] == "\x1b[91mX\x1b[00m" and board[5] == "\x1b[91mX\x1b[00m" and board[8] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #Diagonals
+            elif board[0] == "\x1b[91mX\x1b[00m" and board[4] == "\x1b[91mX\x1b[00m" and board[8] == "\x1b[91mX\x1b[00m":
+                return "x"
+            elif board[2] == "\x1b[91mX\x1b[00m" and board[3] == "\x1b[91mX\x1b[00m" and board[6] == "\x1b[91mX\x1b[00m":
+                return "x"
+            #O Checks
+            #Rows
+            if board[0] == "\x1b[92mO\x1b[00m" and board[1] == "\x1b[92mO\x1b[00m" and board[2] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[3] == "\x1b[92mO\x1b[00m" and board[4] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[6] == "\x1b[92mO\x1b[00m" and board[7] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Columns
+            elif board[0] == "\x1b[92mO\x1b[00m" and board[3] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[1] == "\x1b[92mO\x1b[00m" and board[4] == "\x1b[92mO\x1b[00m" and board[7] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[2] == "\x1b[92mO\x1b[00m" and board[5] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #Diagonals
+            elif board[0] == "\x1b[92mO\x1b[00m" and board[4] == "\x1b[92mO\x1b[00m" and board[8] == "\x1b[92mO\x1b[00m":
+                return "o"
+            elif board[2] == "\x1b[92mO\x1b[00m" and board[3] == "\x1b[92mO\x1b[00m" and board[6] == "\x1b[92mO\x1b[00m":
+                return "o"
+            #None
+            elif board[0] != "1" and board[1] != "2" and board[2] != "3" and board[3] != "4" and board[4] != "5" and board[5] != "6" and board[6] != "7" and board[7] != "8" and board[8] != "9":
+                return "cat"
+            else:
+                return ""
+        #Board 2 Checks
+        elif board_size == "2":
+            #Large Board Quadrent 1
+            #Large Board Quadrent 2
+            #Large Board Quadrent 3
+            #Large Board Quadrent 4
 #Run Program
 main()
