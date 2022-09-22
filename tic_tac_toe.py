@@ -64,9 +64,12 @@ def game_setup():
 
 #Game
 def run_game(options):
-    print("\n\n\n\n\n\n\n\nLets Play!\nGet 3 in a row to win!\n-----------------------------")
     game_won = False
     board_size = options[0]
+    if board_size == "1":
+        print("\n\n\n\n\n\n\n\nLets Play!\nGet 3 in a row to win!\n-----------------------------")
+    else:
+        print("\n\n\n\n\n\n\n\nLets Play!\nGet 4 in a row to win!\n-----------------------------")
     player_turn = "X"
     if board_size == "1":
         board=["1","2","3","4","5","6","7","8","9"]
@@ -242,4 +245,5 @@ def win_check(board, board_size):
             else:
                 return ""
 #Run Program
-main()
+if __name__ == "__main__":
+    main()
